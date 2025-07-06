@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id       String   @id @default(cuid())
+  username String   @unique
+  email    String   @unique
+  password String
+
+  matchesAsPlayer1 Match[] @relation("Player1Matches")
+  matchesAsPlayer2 Match[] @relation("Player2Matches")
+  wins     Int      @default(0)
+  losses   Int      @default(0)
+}
+
+model Problem {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  input       String
+  output      String
+  difficulty  String
+
+  matches     Match[]
+}
+
+model Match {
+  id          String   @id @default(cuid())
+  player1     User     @relation("Player1Matches", fields: [player1Id], references: [id])
+  player1Id   String
+
+  player2     User     @relation("Player2Matches", fields: [player2Id], references: [id])
+  player2Id   String
+
+  winnerId    String?
+  problem     Problem  @relation(fields: [problemId], references: [id])
+  problemId   String
+
+  startedAt   DateTime @default(now())
+  endedAt     DateTime?
+}

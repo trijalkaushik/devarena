@@ -4,5 +4,6 @@ packages:
 
 onlyBuiltDependencies:
   - '@tailwindcss/oxide'
+  - bcrypt
   - sharp
   - unrs-resolver
