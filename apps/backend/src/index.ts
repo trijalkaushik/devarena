@@ -6,6 +6,7 @@ import { setupSocketIO } from './socket';
 import authRoutes from './routes/auth';
 import problemRoutes from './routes/problem';
 import leaderboardRoutes from './routes/leaderboard';
+import submitRoutes from './routes/submit';
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/problems', problemRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
+app.use('/api/submit', submitRoutes);
 
 app.get('/', (_req, res) => {
   res.send('DevArena backend is live 🚀');

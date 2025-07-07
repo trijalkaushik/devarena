@@ -46,3 +46,9 @@ model Match {
   startedAt   DateTime @default(now())
   endedAt     DateTime?
 }
+
+model Leaderboard {
+  userId  String @id
+  wins    Int    @default(0)
+  losses  Int    @default(0)
+}
