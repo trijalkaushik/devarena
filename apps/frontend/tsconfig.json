@@ -1,31 +1,32 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "module": "nodenext",             // ✅ changed from "esnext"
+    "module": "esnext",
     "target": "es2020",
     "jsx": "preserve",
-    "moduleResolution": "nodenext",   // ✅ must match "module"
+    "moduleResolution": "bundler",
     "allowJs": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "noEmit": true,
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*"]
     },
     "incremental": true,
     "plugins": [
       { "name": "next" }
-    ]
+    ],
+    "lib": ["dom", "dom.iterable", "es6"]
   },
   "include": [
-    "src",
-    "context",
-    "lib",
+    "src/**/*",
+    "lib/**/*",
     "next-env.d.ts",
     "tailwind.config.mts",
     ".next/types/**/*.ts"
